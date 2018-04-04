@@ -1,31 +1,62 @@
 Model Checking CTL 
 
-https://www7.in.tum.de/um/25/pdf/Clarke.pdf 
+(*) = déjà mis dans la bibliographie du mini-mémoire
+(~) = déjà mis dans la bibliographie mais non cité 
 
-https://courses.cs.washington.edu/courses/cse599f/06sp/papers/diss-schwoon.pdf 
+PDF Scientifiques (thesis/articles/book)
+________________________________________
 
-https://www.coursera.org/learn/quantitative-model-checking/lecture/UnSoH/model-checking-ctl 
+- Livre de référence : 
 
-https://pages.lip6.fr/Nathalie.Sznajder/cours.pdf 
-
-http://people.irisa.fr/David.Pichardie/teaching/L3/LOG/cours12.pdf
-
-https://www.react.uni-saarland.de/publications/diss-kuhtz.pdf
-
-http://sebastien.bardin.free.fr/MC-cours1.pdf
-
-http://www.uio.no/studier/emner/matnat/ifi/INF4290/v10/undervisningsmateriale/INF4290-MC.pdf
-
+	(*) • 
 http://is.ifmo.ru/books/_principles_of_model_checking.pdf 
 
-https://pdfs.semanticscholar.org/a425/7cd9abde220d55d777da6c061671b63f8bf2.pdf
+- Thèses de doctorat/mémoires : 
+	
+	(*) • CLARKE "Birth of MC" : https://www7.in.tum.de/um/25/pdf/Clarke.pdf 
+	-> Intro/Explications principes de bases Model Checking
 
+	(~) • SCHWOON "MC Pushdown Syst" : https://courses.cs.washington.edu/courses/cse599f/06sp/papers/diss-schwoon.pdf   
+
+	(~) • KUTZ "MC Paths and Trees" : https://www.react.uni-saarland.de/publications/diss-kuhtz.pdf  
+
+	(*) • CLARKE "State Explo Prob" : https://pdfs.semanticscholar.org/a425/7cd9abde220d55d777da6c061671b63f8bf2.pdf 
+
+	(~) • BOURDIL "Modélisation MC" : 
 https://tel.archives-ouvertes.fr/tel-01579065/document
+  
+	-> Petit paragraphe sur CTL 
 
-------------------
+	(~) • MERZ "Intro MC" : https://members.loria.fr/SMerz/papers/mc-iste2008.pdf
+	-> Intro + exemple de codes elevator, etc 
+
+	(~) • https://db.in.tum.de/~finis/papers/MT%20Jan%20Finis%20-%20Incremental%20MCing%20of%20RKSs.pdf?lang=de
+	-> Bien pour Kripke/Syntaxe etc (algo MC) 
+ 
+Slide de cours 
+________________________________________ 
+
+	• https://pages.lip6.fr/Nathalie.Sznajder/cours.pdf 
+
+	• http://people.irisa.fr/David.Pichardie/teaching/L3/LOG/cours12.pdf
+
+	• http://sebastien.bardin.free.fr/MC-cours1.pdf
+
+	• 
+http://www.uio.no/studier/emner/matnat/ifi/INF4290/v10/undervisningsmateriale/INF4290-MC.pdf
+
+	• https://www.college-de-france.fr/site/gerard-berry/course-2015-03-25-16h00.htm 
+	
+	• https://www.cs.cmu.edu/~emc/15414-s14/lecture/ModelChecking.pdf
 
 
-https://www.college-de-france.fr/site/gerard-berry/course-2015-03-25-16h00.htm 
-Voir paragraphe -> L'idée de base est de construire le graphe ... 
+
+
+
+
+
+
+
+
 
 
