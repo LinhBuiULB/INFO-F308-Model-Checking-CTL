@@ -26,6 +26,9 @@
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
 
+\usepackage[hidelinks]{hyperref}
+
+
 \usepackage{amsmath}
 
 \usepackage[french]{babel} % Pour adopter les règles de typographie française
@@ -46,7 +49,7 @@
 
 \titlerunning{Le Model-Checking de CTL}
 
-\author{BUI QUANG PHUONG Linh -- 000427796 \\ Promoteur : GEERAERTS Gilles}
+\author{BUI QUANG PHUONG Linh -- 000427796 \\ Promoteur : Prof. GEERAERTS Gilles}
 
 \institute{Université Libre de Bruxelles}
 
@@ -86,7 +89,7 @@ Le principe de base du model-checking est la vérification qu'un certain systèm
 $$\boxed{\textit{M} \vDash \Phi}$$
 
 \noindent
-Lorsque le système ne satisfait pas la propriété évaluée, le model-checking a donc repéré un bug ou un dysfonctionnement. Chaque année, le coût des bugs s'élève à environ 59 milliards de dollars\footnote{Source: https://raygun.com/blog/cost-of-software-errors/} rien qu'aux Etats-Unis. La création et la mise en place de technique de vérification est donc impérative pour réduire le taux de bugs afin de minimiser ces coûts.  \\
+Lorsque le système ne satisfait pas la propriété évaluée, le model-checking a donc repéré un bug ou un dysfonctionnement. Chaque année, le coût des bugs s'élève à environ 59 milliards de dollars \cite{ErrorCost} rien qu'aux Etats-Unis. La création et la mise en place de technique de vérification est donc impérative pour réduire le taux de bugs afin de minimiser ces coûts.  \\
 
 \noindent
 Illustrons cela par un exemple plus concret : un distributeur de boissons. Dans ce cas, il est indispensable que le montant demandé pour une certaine boisson soit mis dans la machine afin que le client puisse récupérer la boisson. La vérification de ce prérequis va être effectué à l'aide d'un système de model-checking. 
@@ -112,15 +115,17 @@ Le processus de base d'un model-checking est divisé en 3 phases :
  
  \newpage
  
- \begin{figure}
+\begin{figure}
   \centering
-  \includegraphics[scale=0.7]{schematic-view.png}
+   \includegraphics[scale=0.7]{figures/schematic-view.png}
    \caption[Caption for LOF]{Vue schématique de l'approche du model-checking\protect\footnotemark}
 \end{figure}
 
-\footnotetext{Source: Christel Baier and Joost-Pieter Katoen, Principles of Model Checking, p.8 figure 1.4}
+\footnotetext{Source: Christel Baier and Joost-Pieter Katoen, Principles of Model Checking \cite{RefBook}, p.8 figure 1.4}
 
 \subsection{Avantages \& désavantages}
+
+Dans cette section, plusieurs avantages et inconvénients seront présentés sur base des recherches effectuées en 2008 par \textit{Clarke} \cite{Birth-MC} ainsi que du livre de référence "Principles of Model Checking" \cite{RefBook}.
 
 \subsubsection{Avantages du model-checking}
 
@@ -139,7 +144,7 @@ Un model-checking possède plusieurs avantages par rapport à l'utilisation d'é
 Néanmoins, le model-checking est une solution discutable sur certains points : 
 
 \begin{itemize}
-\item Le model-checking grandit exponentiellement au nombre de processus actifs (appelés états, correspondant à la taille du système). Pour $N$ variables avec un domaine de $k$ valeurs possibles, le nombre d'états grandit de $k^{N}$. Par exemple, pour 20 variables booléennes, il y aurait déjà $2^{20}$ soit 1048576 états. Le modèle devient donc très vite surchargé et surpasse la capacité de la mémoire. Ce problème est appelé \textit{State explosion problem}. Par conséquent, le model-checking ne pourrait donc pas croître. Cependant, plusieurs recherches ont été établies dans le but d'établir une solution à ce problème tels que les \textit{diagrammes de décisions binaires} permettant de représenter plusieurs états en un diagramme. 
+\item Le model-checking grandit exponentiellement au nombre de processus actifs (appelés états, correspondant à la taille du système). Pour $N$ variables avec un domaine de $k$ valeurs possibles, le nombre d'états grandit de $k^{N}$. Par exemple, pour 20 variables booléennes, il y aurait déjà $2^{20}$ soit 1048576 états. Le modèle devient donc très vite surchargé et surpasse la capacité de la mémoire. Ce problème est appelé \textit{State explosion problem} \cite{StateExpProb}. Par conséquent, le model-checking ne pourrait donc pas croître. Cependant, plusieurs recherches ont été établies dans le but d'établir une solution à ce problème tels que les \textit{diagrammes de décisions binaires} permettant de représenter plusieurs états en un diagramme. 
 \item Le model-checking s'applique généralement sur des systèmes finis et n'est pas adapté aux systèmes non-finis de part sa modélisation grâce à des automates d'états finis. Hors, la possibilité de tomber sur un système non-fini (ayant donc une infinité de valeurs possibles pour les variables) n'est pas écartée. % EXPLIQUER PLUS
 \item Comme son nom l'indique, le model-checking exécute une vérification du modèle du système et non du système en lui-même. Les résultats obtenus pour le modèle correspondent en grande partie au système réel, néanmoins, il est nécessaire d'utiliser des techniques supplémentaires comme des tests pour trouver les éléments qui pourraient différer entre le modèle et le système réel, que ce soit au niveau du hardware tel que des défauts de fabrication ou bien au niveau software tel que des erreurs de codage. 
 \item Conséquence du dernier point : le résultat n'est donc pas garanti à 100\% et pourrait donc contenir des erreurs. 
@@ -148,22 +153,102 @@ Néanmoins, le model-checking est une solution discutable sur certains points :
 \section{Point de vue algorithmique}
 
 \subsection{Graphes et principes d'états}
-Présentation du principe de systèmes d'états finis et de graphes en quelques mots + Schéma 
+%Présentation du principe de systèmes d'états finis et de graphes en quelques mots + Schéma 
+Le model-checking base sa représentation sur un système de graphe orienté, plus précisément sur un \textit{système d'états finis} où chaque noeud du graphe est appelé état tel que les arcs entre ces états sont appelés transitions. Cet ensemble d'états et de transitions décrit le comportement du système réactif et forme le \textbf{modèle} de ce système. \\
+
+Dans l'exemple du problème de distributeur de boissons abordé précédemment, un tel modèle se présenterait comme tel : 
+
+\begin{figure}
+  \centering
+   \includegraphics[scale=0.5]{figures/model-boissons.png}
+   \caption[Caption for LOF]{Modèle du problème d'un distributeur de boissons\protect\footnotemark}
+   \label{fig:model_boissons_1}
+\end{figure}
+
+\footnotetext{Source: Wikipedia, "Vérifications de modèles"}
+
+\noindent
+où chaque état est définie par un nom (un alias). Par exemple, "a" définit l'attente de l'entrée d'une pièce de monnaie dans la machine. \\
+
+Un modèle de ce type suit la \textbf{structure de Kripke} et est donc appelé \textit{modèle de Kripke}. 
+
+\newpage 
 
 \subsection{Structure de Kripke}
-Présentation de la structure de Kripke, définitions des différentes notions. 
+%Présentation de la structure de Kripke, définitions des différentes notions.
 
-\subsubsection{Application - exemple de modélisation à l'aide de la structure de Kripke}
-Exemple d'une structure de Kripke + Schéma. Explication de l'exemple. 
+\subsubsection{Définition} 
+
+\textit{Kripke} définit sa structure, donnant nom à la structure de Kripke \cite{Kripke} : 
+
+$$\boxed{\textit{K} = (S,I,A,AP,\delta,\lambda)}$$ 
+
+
+\noindent
+tel que : 
+\begin{itemize}
+\item \textbf{S} est un ensemble fini d'états, \\
+\item \boldmath$I \subseteq S$ est l'ensemble des états initiaux, \\
+\item \textbf{A} est un ensemble d'actions, \\
+\item \textbf{AP} est un ensemble de propositions atomiques, \\
+\item \boldmath$\delta \subseteq S \times A \times S$ est une relation de transitions entre états, \\
+\item \boldmath$\lambda : S \rightarrow 2^{AP}$ est une fonction de labelisation (étiquetage) des états qui fait correspondre chaque état avec la proposition qui y est liée.  
+\end{itemize}
+
+\subsubsection{Exemple complet d'une structure de Kripke} 
+
+Toujours sur base du même problème de distribiteur de boissons, le modèle de la \autoref{fig:model_boissons_1} peut-être repris et complété en se voyant attribuer des noms d'actions afin de pouvoir spécifier les transitions et par conséquent de respecter la structure de Kripke. 
+
+\begin{figure}
+  \centering
+   \includegraphics[scale=0.5]{figures/model-boissons-2.png}
+   \caption[Caption for LOF]{Modèle de Kripke complet du problème d'un distributeur de boissons}
+   \label{fig:model_boissons_2}
+\end{figure}
+
+\noindent
+Dans ce cas, l'ensemble d'états est $S = \{a, e, s, j\}$. L'ensemble d'états initiaux $I = \{a\}$ ici ne comporte qu'un seul état initial et est représenté dans le modèle par un arc d'entrée vers l'état initial $a$. \\
+
+\noindent
+Les labels associés à chaque transition correspond à une action et fait donc partie de l'ensemble d'action $A$. Le symbole $\tau$ représente une action qui n'est pas particulièrement intéressant à étiquetter mais qui n'est néanmoins pas à négliger tels que l'attente de la pièce ou une non-sélection de boisson. L'ensemble d'action est donc $A = \{select\_water, select\_orangeJuice, insert\_coin, get\_orangeJuice, \tau\}$. \\
+
+\noindent
+Les états et actions maintenant définies, des exemples de relations de transitions peuvent être présentés. Voici les transitions d'états lors de l'achat d'un jus d'orange dans le distributeur : 
+
+\begin{enumerate}
+\item \boldmath$\delta(a,insert\_coin,s)$ : représente la transition de l'état \textit{attente d'une pièce de monnaie} à l'état \textit{sélection d'une boisson} grâce à l'action d'insertion de pièce \textit{insert\_coin}. 
+\item \boldmath$\delta(s,select\_orangeJuice,j)$ : représente la transition de l'état \textit{sélection d'une boisson} à l'état \textit{jus d'orange} grâce à l'action \textit{select\_orangeJuice}. 
+\item \boldmath$\delta(j,get\_orangeJuice,a)$ : représente la transition de l'état \textit{jus d'orange} à l'état \textit{attente d'une pièce de monnaie} grâce à l'action \textit{get\_orangeJuice}.
+\end{enumerate} 
+
+Ces 3 exemples de transitions font partie des 7 transitions d'états possibles du modèle. \\
+
+\noindent
+Finalement, concernant le choix des propositions atomiques, le choix le plus simple est d'utiliser le nom des états comme propositions atomiques.\\
+La fonction de labelisation serait donc $\lambda(s) = \{s\}  \forall s \in S$.  
 
 \subsection{Arbre d'exécution d'une structure de Kripke}
 
+\subsubsection{Définition} 
+Un \textit{arbre d'exécution d'une struture de Kripke} correspond au "dépliage" du modèle de Kripke où les noeuds correspondent aux états tel que la racine est l'état initial du modèle de Kripke. Au niveau i, les fils d'un noeud sont les états successeurs au niveau i+1, c'est-à-dire les états subissant une transition à partir du noeud du niveau i. 
+
 \subsubsection{Pourquoi utiliser un arbre ?}
-Expliquer pourquoi on passe d'un graphe à un arbre? Quel est en l'utilité? 
+L'utilisation d'un arbre permet de représenter tous les chemins de la structure de Kripke. Lorsque le graphe de Kripke est cyclique, l'arbre résultant est un arbre infini. C'est notamment de cette transformation en arbre que le model checking CTL (Computation Tree Logic) tient son nom vu qu'il se base sur la structure en arbre du système. 
 
-\subsubsection{Application - du graphe à l'arbre}
-Traduction de l'exemple de Kripke donné ci-dessus en arbre. 
+\subsubsection{Illustration : d'un graphe à un arbre.}
 
+Afin d'illustrer la transformation de la structure de Kripke à un arbre, reprenons une nouvelle fois l'exemple du distributeur de boissons dont le modèle de Kripke est présentée à la \autoref{fig:model_boissons_2} et transformons celui-ci en arbre. 
+
+\begin{figure}
+  \centering
+   \includegraphics[scale=0.5]{figures/Arbre_Distributeur.png}
+   \caption[Caption for LOF]{Arbre du problème d'un distributeur de boissons}
+   \label{fig:arbre_boissons}
+\end{figure}
+
+Tous les éléments présents dans le modèle de Kripke se retrouvent bien dans l'arbre. Dans ce cas, il s'agit bien d'un arbre infini résultant d'un graphe cyclique dont les 4 premiers niveaux sont présentés dans la \autoref{fig:arbre_boissons}. Le niveau 0 représente la racine de l'arbre.    
+
+ 
 \section{Le model-checking de CTL: généralités et logiques}
 
 \subsection{Introduction à la logique temporelle}
@@ -202,7 +287,9 @@ Complexité du code donné ainsi que d'un model checking de CTL en général \\
 
 \textbf{FIN DU DOC: Sources, bibliographie} 
 
-\bibliography{references}
-\nocite{*} 
+\bibliographystyle{unsrt}
+\nocite{*}
+\bibliography{bibliography}
+
 
 \end{document}
