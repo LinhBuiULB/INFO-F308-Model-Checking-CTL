@@ -1,1 +1,1 @@
-Cette section contiendra toutes les sources utilisées à la réalisation du mini mémoire. 
+Toutes les liens vers les sources utilisées se trouvent dans le fichier "sources.txt" 
