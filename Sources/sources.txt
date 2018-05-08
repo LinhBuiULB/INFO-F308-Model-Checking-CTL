@@ -14,7 +14,6 @@ http://is.ifmo.ru/books/_principles_of_model_checking.pdf
 - Thèses de doctorat/mémoires : 
 	
 	(*) • CLARKE "Birth of MC" : https://www7.in.tum.de/um/25/pdf/Clarke.pdf 
-	-> Intro/Explications principes de bases Model Checking
 
 	(*) • SCHWOON "MC Pushdown Syst" : https://courses.cs.washington.edu/courses/cse599f/06sp/papers/diss-schwoon.pdf   
 
@@ -25,13 +24,19 @@ http://is.ifmo.ru/books/_principles_of_model_checking.pdf
 	(*) • BOURDIL "Modélisation MC" : 
 https://tel.archives-ouvertes.fr/tel-01579065/document
   
-	-> Petit paragraphe sur CTL 
 
 	(*) • MERZ "Intro MC" : https://members.loria.fr/SMerz/papers/mc-iste2008.pdf
-	-> Intro + exemple de codes elevator, etc 
 
-	(*) • https://db.in.tum.de/~finis/papers/MT%20Jan%20Finis%20-%20Incremental%20MCing%20of%20RKSs.pdf?lang=de
-	-> Bien pour Kripke/Syntaxe etc (algo MC) + pas mal de pseudo code
+	(*) • FINIS "Incremental MC of Rec Kripke" : https://db.in.tum.de/~finis/papers/MT%20Jan%20Finis%20-%20Incremental%20MCing%20of%20RKSs.pdf?lang=de
+
+	(*) • BARDIN "Intro au MC" : http://sebastien.bardin.free.fr/MC-ENSTA.pdf 
+
+	(*) • MSAKNI "Logique Tempo" : http://deptinfo.unice.fr/twiki/pub/Linfo/PlanningDesSoutenances20032004/Msakni.pdf
+
+	(*) • Complexité : http://www.i3s.unice.fr/~nlt/cours/licence/it/s7_itdut_td7.2.pdf
+			   https://www.enseignement.polytechnique.fr/informatique/INF423/uploads/Main/chap13-good.pdf
+			   https://www.irif.fr/~carton/Enseignement/Complexite/MasterInfo/Cours/space.html#PSPACECompletude
+			   + Wikipedia
  
 Slide de cours 
 ________________________________________ 
@@ -60,8 +65,14 @@ http://www.uio.no/studier/emner/matnat/ifi/INF4290/v10/undervisningsmateriale/IN
 	
 	• Syntax/Sem facile à comprendre : http://www.cs.ucsb.edu/~bultan/courses/267/lectures/l2.pdf 
 
+	• http://www.inf.ed.ac.uk/teaching/courses/fv/slides/slides05.pdf
+	
+	• http://www.artist-embedded.org/docs/Events/2007/PhD-Course_Automated_Formal_Meth/Slides/Lecture2.pdf
 
+	Dernière partie (implém): 
 
-
+	• https://www.cs.waikato.ac.nz/~robi/comp552-07b/comp552-lecture13.pdf
+	• http://www.artist-embedded.org/docs/Events/2007/PhD-Course_Automated_Formal_Meth/Slides/Lecture2.pdf
+	• http://drona.csa.iisc.ernet.in/~deepakd/GIAN-CPSV/ctl-model-checking-gian-2018.pdf
 
 
