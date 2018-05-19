@@ -171,11 +171,9 @@ Le model-checking base sa représentation sur un système de graphe orienté, pl
 \begin{figure}
   \centering
    \includegraphics[scale=0.4]{figures/model-boissons.png}
-   \caption[Caption for LOF]{Modèle du problème d'un distributeur de boissons (source: \textit{Wiki})\protect\footnotemark}
+   \caption[Caption for LOF]{Modèle du problème d'un distributeur de boissons \cite{wiki}}
    \label{fig:model_boissons_1}
 \end{figure}
-
-\footnotetext{Source: Wikipedia, "Vérifications de modèles" - https://fr.wikipedia.org/wiki/Vérification\_de\_modèles}
 
 \noindent
 où chaque état est défini par un nom (un alias). Par exemple, "a" définit l'attente de l'entrée d'une pièce de monnaie dans la machine. \\
@@ -280,11 +278,9 @@ La logique temporelle linéaire ne quantifie pas sur les états et considère do
 \begin{figure}
   \centering
    \includegraphics[scale=0.43]{figures/operateurs-temp.png}
-   \caption[Caption for LOF]{Modalités temporelles de LTL (Source: \textit{S. Bardin})\protect\footnotemark}
+   \caption[Caption for LOF]{Modalités temporelles de LTL \cite{bardin-slides}}
    \label{fig:operateurs-temp}
-\end{figure}
-
-\footnotetext{Source: Sébastien Bardin http://sebastien.bardin.free.fr/MC-cours2.pdf - Slides 7/44} 
+\end{figure} 
 
 \subsubsection{Computation Tree Logic - CTL}
 CTL est une logique temporelle basée sur la logique propositionnelle avec une notion discrète du temps dont le futur n'est pas déterminé. En effet, CTL exprime tous les chemins possibles d'un état à un autre grâce à sa structure d'arbre (notamment les arbres résultant du modèle de Kripke). En d'autres termes, la logique temporelle arborescente CTL peut être définie à partir d’un ensemble de variables propositionnelles AP, des connecteurs classiques de la logique propositionnelle tels que l'implication, la conjonction ou la disjonction, de quantificateurs de chemins (E ou A) et de connecteurs temporels (X,F,G,U). La syntaxe et sémantique de CTL fera l'objet des \autoref{sec:syntaxe-CTL} et \autoref{sec:sem-CTL}. \\
@@ -328,15 +324,15 @@ Alors: \\
   \hline
   Syntaxe & Signification \\
   \hline
-  $AX\phi$ & Dans tous les chemins ($A$), $\phi$ est valide pour le prochain état du chemin. ($X$)\\
-  $AF\phi$ & Dans tous les chemins ($A$), $\phi$ est valide pour au moins un état du chemin. ($F$) \\
-  $AG\phi$ & Dans tous les chemins ($A$), $\phi$ est valide pour tous les états du chemin. ($G$) \\
-  $A(\phi_{1} \cup \phi_{2})$ & Dans tous les chemins ($A$), $\phi_{1}$ est valide jusqu'à ce que $\phi_{2}$ devient valide ($\cup$) \\
+  $AX\phi$ & Dans tous les chemins ($A$), $\phi$ est satisfait pour le prochain état du chemin. ($X$)\\
+  $AF\phi$ & Dans tous les chemins ($A$), $\phi$ est satisfait pour au moins un état du chemin. ($F$) \\
+  $AG\phi$ & Dans tous les chemins ($A$), $\phi$ est satisfait pour tous les états du chemin. ($G$) \\
+  $A(\phi_{1} \cup \phi_{2})$ & Dans tous les chemins ($A$), $\phi_{1}$ est satisfait jusqu'à ce que $\phi_{2}$ devient valide ($\cup$) \\
   \hline
-  $EX\phi$ & Il existe un chemin ($E$) où $\phi$ est valide pour le prochain état du chemin. ($X$) \\
-  $EF\phi$ & Il existe un chemin ($E$) où $\phi$ est valide pour au moins un état du chemin. ($F$)\\
-  $EG\phi$ & Il existe un chemin ($E$) où $\phi$ est valide pour tous les états du chemin. ($G$)\\
-  $E(\phi_{1} \cup \phi_{2})$ & Il existe un chemin ($E$) où $\phi_{1}$ est valide jusqu'à ce que $\phi_{2}$ devienne valide ($\cup$) \\
+  $EX\phi$ & Il existe un chemin ($E$) où $\phi$ est satisfait pour le prochain état du chemin. ($X$) \\
+  $EF\phi$ & Il existe un chemin ($E$) où $\phi$ est satisfait pour au moins un état du chemin. ($F$)\\
+  $EG\phi$ & Il existe un chemin ($E$) où $\phi$ est satisfait pour tous les états du chemin. ($G$)\\
+  $E(\phi_{1} \cup \phi_{2})$ & Il existe un chemin ($E$) où $\phi_{1}$ est satisfait jusqu'à ce que $\phi_{2}$ devienne satisfait ($\cup$) \\
   
  \hline
  
@@ -346,16 +342,16 @@ Alors: \\
 
 La \autoref{tab:syntax-ctl-prop} reprend les connecteurs principaux de la logique propositionnelle tandis que la \autoref{tab:syntax-ctl-temp} correspondant à de la logique temporelle. Cette dernière est divisée selon les quantificateurs de chemins en deux parties : 
 \begin{itemize}
-\item \textbf{A} pour "\textbf{A}ll" : la propriété est valide sur tous les chemins possibles (= inévitable).
-\item \textbf{E} pour "\textbf{E}xists" : la propriété est valide sur au moins un chemin (= possible).
+\item \textbf{A} pour "\textbf{A}ll" : la propriété est satisfaite sur tous les chemins possibles (= inévitable).
+\item \textbf{E} pour "\textbf{E}xists" : la propriété est satisfaite sur au moins un chemin (= possible).
 \end{itemize}
 
 Chacune de ses parties possède 4 types de connecteurs : 
 \begin{itemize}
-\item \textbf{X} pour "ne\textbf{X}t" : la propriété doit être valide pour le prochain état du chemin. 
-\item \textbf{F} pour "\textbf{F}inally" : la propriété est valide pour au moins un état du chemin.
-\item \textbf{G} pour "\textbf{G}lobally" : la propriété est valide pour tous les états du chemin.
-\item $\pmb{\cup}$ pour "\textbf{U}ntil" : la propriété doit être valide jusqu'à ce que la deuxième est "déclenchée" et devient donc valide. \\
+\item \textbf{X} pour "ne\textbf{X}t" : la propriété doit être satisfaite pour le prochain état du chemin. 
+\item \textbf{F} pour "\textbf{F}inally" : la propriété est satisfaite pour au moins un état du chemin.
+\item \textbf{G} pour "\textbf{G}lobally" : la propriété est satisfaite pour tous les états du chemin.
+\item $\pmb{\cup}$ pour "\textbf{U}ntil" : la propriété doit être satisfaite jusqu'à ce que la deuxième est "déclenchée" et devient donc satisfaite. \\
 \end{itemize}
 
 La logique temporelle présentée à la \autoref{tab:syntax-ctl-temp} est illustrée dans la \autoref{fig:syntax-schema}. Les propositions de l'état initial de chaque système sont considérés comme étant vraies. 
@@ -363,21 +359,13 @@ La logique temporelle présentée à la \autoref{tab:syntax-ctl-temp} est illust
 \begin{figure}
   \centering
    \includegraphics[scale=0.43]{figures/syntax-schema.png}
-   \caption[Caption for LOF]{Illustration de la logique temporelle de CTL (Source: Alessandro Artale (2010))\protect\footnotemark}
+   \caption[Caption for LOF]{Illustration de la logique temporelle de CTL \cite{artale-slides}}
    \label{fig:syntax-schema}
 \end{figure}
 
-\footnotetext{Source: Alessandro Artale (2010) http://www.inf.unibz.it/~artale/FM/slide4.pdf - Slide 14/37} 
-
-
-% AJOUTER PROPRIETES SI BCP DE PAGES ACCEPTE  (http://www.inf.ed.ac.uk/teaching/courses/propm/papers/CTL.pdf slide 10 + https://www.cs.cmu.edu/~emc/15414-s14/lecture/ModelChecking.pdf slide 17) et EXEMPLE DISTRI avec SYNTAXE
-
-
-%%%%%% PAS CORRIGE A PARTIR DE LA 
-
 \subsection{Sémantique de CTL} \label{sec:sem-CTL}
 %Présentation de la sémantique de CTL - des relations de satisfactions, des interprétations des différentes formules, etc.. 
-Les formules CTL sont interprétées par rapport aux états et aux chemins d'un système de transisition (qui suit la structure de Kripke\footnote{cfr. \autoref{sec:kripke}}). Généralement, la sémantique de CTL aborde donc une formule CTL (propriété) $\phi$ par deux relations de satisfactions, une pour les états $s$ et l'autre pour les chemins\footnote{Rappel: la notion de chemin est définie dans la \autoref{sec:syntaxe-CTL}} $\pi \in \mathbb{P}$, où $\mathbb{P}$ définit l'ensemble des chemins $\{\pi_{0}, \pi_{1}, \dots, \pi_{i}\}$ d'une structure de Kripke : 
+Les formules CTL sont interprétées par rapport aux états et aux chemins d'un système de transition (qui suit la structure de Kripke\footnote{cfr. \autoref{sec:kripke}}). Généralement, la sémantique de CTL aborde donc une formule CTL (propriété) $\phi$ par deux relations de satisfactions, une pour les états $s$ et l'autre pour les chemins\footnote{Rappel: la notion de chemin est définie dans la \autoref{sec:syntaxe-CTL}} $\pi \in \mathbb{P}$, où $\mathbb{P}$ définit l'ensemble des chemins $\{\pi_{0}, \pi_{1}, \dots, \pi_{i}\}$ d'une structure de Kripke : 
 
 \begin{enumerate}
 \item Pour un état :  $(\mathcal{K},s) \vDash \phi \Leftrightarrow s$ satisfait $\phi$ 
@@ -738,46 +726,46 @@ L'algorithme de $A(\phi_{1} \cup \phi_{2})$ ressemble vraisemblablement à celui
 
 \subsection{Résultats} 
 
-Afin d'illustrer les algorithmes abordés, une exécution de chaque algorithme sur les 3 premiers nvieaux (0,1,2) de la modélisation du problème de distributeur de boissons va être présentée. 
+Afin d'illustrer les algorithmes abordés, une exécution de chaque algorithme sur la structure de Kripke (modélisation) du problème de distributeur de boissons va être présentée. 
 
 \danger
-\textbf{\textit{Remarque:}} Il est important de rappeler que les algorithmes présentés sont exécutés \textbf{sur la structure de Kripke qui est passée en entrée}, et donc \textbf{sur un graphe}. Les schémas présentés ci-dessous présentent l'exécution sur une partie du dépliage en arbre de cette structure de Kripke afin d'améliorer la visibilité de cette exécution. Ce n'est donc pas sur cet arbre que l'algorithme s'exécute mais bel et bien sur la structure de Kripke prise en entrée ! 
+\textbf{\textit{Remarque:}} Pour rappel, \textbf{l'exécution des algorithmes présentés se font sur la structure de Kripke passée en entrée.} Uniquement par souci de visibilité, les actions des transitions entre les états ne sont pas annotés. De plus, l'annexe \autoref{sec:algo-arbres} présente ces algorithmes sur les 3 premiers niveaux du dépliage en arbre (degrés) de la structure de Kripke afin d'avoir un autre point de vue (plus lisible) de l'exécution. 
 
 \subsubsection{$EX\phi$}
 
-La formule CTL que la fonction prend en entrée est $\phi$ qui correspond donc à $\phi = EX\phi'$. $\phi '$ correspond ici à la propriété lorsque le distributeur est dans le mode "sélection de boissons" (alias $s$). A la fin de l'exécution, et donc de la seconde boucle (représenté en vert dans la \autoref{fig:algo-EX}), nous obtenons les états accepteurs représentés par un état "doublement entouré" qui vérifient la propriété $\phi$, à savoir $\{s_{1} ,a_{1}\}$ qui précèdent un état dont $\phi ' = true$.  
+La formule CTL que la fonction prend en entrée est $\phi$ qui correspond donc à $\phi = EX\phi'$. $\phi '$ correspond ici à la propriété lorsque le distributeur est dans le mode "sélection de boissons" (alias $s$). A la fin de l'exécution, et donc de la seconde boucle (représenté en vert dans la \autoref{fig:algo-graph-EX}), nous obtenons les états accepteurs représentés par un état "doublement encadré" qui vérifient la propriété $\phi$, à savoir $\{s_{1} ,a_{1}\}$ qui précèdent un état dont $\phi ' = true$ ainsi que les transitions $X \xrightarrow{\text{action}} Y$ permettant la satisfaisabilité de $\phi$ sont mises en évidence où dans ce cas, $X$ est un état précédant $\phi '$ et $Y$ un état qui satisfait $\phi '$. 
 
 
 \begin{figure}
   \centering
-   \includegraphics[scale=0.4]{figures/algo-EX.png}
+   \includegraphics[scale=0.37]{figures/algo-graph-EX.png}
    \caption[Caption for LOF]{Exécution de l'algorithme 4 - $EX\phi$}
-   \label{fig:algo-EX}
+   \label{fig:algo-graph-EX}
 \end{figure} 
 
 \subsubsection{$E(\phi_{1} \cup \phi_{2})$}
 
-La formule CTL que la fonction prend en entrée est $\phi$ qui correspond donc à $\phi = E(\phi_{1} \cup \phi_{2})$. $\phi_{1}$ correspond ici à la propriété lorsque le distributeur est en attente de la monnais (alias $a$) et $\phi_{2}$ correspond au mode "sélection de boissons" (alias $s$). A la fin de la deuxième boucle (en bleu dans la \autoref{fig:algo-EU}), \texttt{marked} contient les états qui vérifient $\phi_{2}$, à savoir $\{s_{1}, s_{2}, s_{2}'\}$. S'en suit la boucle principale (en vert dans la \autoref{fig:algo-EU}) qui va vérifier les états prédécesseurs à \texttt{marked} = $\{s_{1}, s_{2}, s_{2}'\}$. Les 3 états vont être traités un par un et se voient retirés de \texttt{marked}. Seuls $s_{1}$ et $s_{2}'$ correspondent à nos attentes. Les états $\{a_{0}, a_{1}\}$ vont être ajoutés à \texttt{marked} afin de passer leur étiquette $\phi$ à \texttt{true} pour finalement être retirés et obtenir une liste $marked$ vide qui marque la fin de la boucle. 
+La formule CTL que la fonction prend en entrée est $\phi$ qui correspond donc à $\phi = E(\phi_{1} \cup \phi_{2})$. $\phi_{1}$ correspond ici à la propriété lorsque le distributeur est en attente de la monnaie (alias $a$) et $\phi_{2}$ correspond au mode "sélection de boissons" (alias $s$). A la fin de la deuxième boucle (en bleu dans la \autoref{fig:algo-EU}), \texttt{marked} contient les états qui vérifient $\phi_{2}$, à savoir $\{s_{i}\}$ avec $0 \le i < \inf$. S'en suit la boucle principale (en vert dans la \autoref{fig:algo-graph-EU}) qui va vérifier les états prédécesseurs à \texttt{marked} = $\{s_{i}\}$. Les états $s_{i}$ vont être traités un par un et se voient retirés de \texttt{marked}. Les états satisfaisant $\phi_{1}$ vont être ajoutés à \texttt{marked} afin de passer leur étiquette $\phi$ à \texttt{true} pour finalement être retirés et obtenir une liste $marked$ vide qui marque la fin de la boucle. 
 
 
 \begin{figure}
   \centering
-   \includegraphics[scale=0.38]{figures/algo-EU.png}
+   \includegraphics[scale=0.38]{figures/algo-graph-EU.png}
    \caption[Caption for LOF]{Exécution de l'algorithme 5 - $E(\phi_{1} \cup \phi_{2})$}
-   \label{fig:algo-EU}
+   \label{fig:algo-graph-EU}
 \end{figure} 
 
 
 \subsubsection{$A(\phi_{1} \cup \phi_{2})$}
 
-La formule CTL que la fonction prend en entrée est $\phi$ qui correspond donc à $\phi = A(\phi_{1} \cup \phi_{2})$. $\phi_{1}$ et $\phi_{2}$ correspondent aux mêmes propriétés que précédemment pour $\phi = E(\phi_{1} \cup \phi_{2})$, à savoir respectivement $a$ et $s$. L'exécution est la même pour les 2 premières boucles sauf que dans ce cas-ci, nous avons besoin d'ajouter une variable \texttt{deg} à chaque état comme expliqué précédemment. A la fin de la seconde boucle, \texttt{marked} contient donc toujours $\{s_{1}, s_{2}, s_{2}'\}$. La boucle suivante (en vert dans la \autoref{fig:algo-AU}) tente de vérifier que tous les états prédécesseurs à ceux contenus dans \texttt{marked} vérifient $\phi_{1}$. Les états $s_{1}$ et $s_{2}'$ ne posent pas de soucis tandis que le prédecesseur de $s_{2}$ est $s_{1}$, or il devrait être $\phi_{1}$ ($a$). Il ne satisfait donc pas la propriété et engendre donc la non satisfaisabilité de la propriété $\phi$. 
+La formule CTL que la fonction prend en entrée est $\phi$ qui correspond donc à $\phi = A(\phi_{1} \cup \phi_{2})$. $\phi_{1}$ et $\phi_{2}$ correspondent aux mêmes propriétés que précédemment pour $\phi = E(\phi_{1} \cup \phi_{2})$, à savoir respectivement $a$ et $s$. L'exécution est la même pour les 2 premières boucles sauf que dans ce cas-ci, nous avons besoin d'ajouter une variable \texttt{deg} (degré) à chaque état comme expliqué précédemment. Les variables de degré $d$ et $k$ correspondent au nombre de transitions $a_{i} \longrightarrow a_{i+1}$ et $s_{i} \longrightarrow s_{i+1}$. A la fin de la seconde boucle, \texttt{marked} contient donc toujours $\{s_{i}\}$. La boucle suivante (en vert dans la \autoref{fig:algo-AU}) tente de vérifier que tous les états prédécesseurs à ceux contenus dans \texttt{marked} vérifient $\phi_{1}$. Les états $a_{i}$ de la transition $a_{i} \xrightarrow{\text{insert\_coin()}} s_{i}$ ou de $a_{i} \longrightarrow a_{i+1}$ ne posent pas de soucis tandis que l'état prédecesseur $s_{j}$ de $s_{i}$ résultant de la transition $s_{j} \longrightarrow s_{i}$ (mis en évidence en rouge dans la \autoref{fig:algo-graph-AU}) ne satisfait pas $\phi_{1}$ qui engendre donc la non satisfaisabilité de la propriété $\phi$. 
 
 
 \begin{figure}
   \centering
-   \includegraphics[scale=0.38]{figures/algo-AU.png}
+   \includegraphics[scale=0.38]{figures/algo-graph-AU.png}
    \caption[Caption for LOF]{Exécution de l'algorithme 6 - $A(\phi_{1} \cup \phi_{2})$}
-   \label{fig:algo-AU}
+   \label{fig:algo-graph-AU}
 \end{figure} 
 
 
@@ -788,9 +776,7 @@ La complexité en temps des différents algorithmes présentés est caractéris�
 
 \section{Conclusion}
 
-En conclusion, les bases de l'algorithme du model checking et plus particulièrement du model checking de CTL ont été vus. Le model checking CTL s'avère être une méthode de vérification automatique efficace, ceci se remarquant notamment à l'aide de l'algorithme par labelling présentée dans la section précédente. \\
-
-En effet, un avantage majeur de l'algorithme par labelling du model checking CTL est qu'il tourne en temps linéaire en chacune des entrées (structure de Kripke et formule CTL). L’algorithme repose sur le fait que toute formule CTL peut s’exprimer par un nombre restreint de formules sur les états. Cela nous permet de raisonner en termes d'états (satisfaisant la formule) plutôt que d’exécutions. \\
+En conclusion, les bases de l'algorithme du model checking et plus particulièrement du model checking de CTL ont été vus. Le model checking CTL s'avère être une méthode de vérification automatique efficace, ceci se remarquant notamment à l'aide de l'algorithme par labelling présentée dans la section précédente. En effet, un avantage majeur de l'algorithme par labelling du model checking CTL est qu'il tourne en temps linéaire en chacune des entrées (structure de Kripke et formule CTL). L’algorithme repose sur le fait que toute formule CTL peut s’exprimer par un nombre restreint de formules sur les états. Cela nous permet de raisonner en termes d'états (satisfaisant la formule) plutôt que d’exécutions. \\
 
 Néanmoins, nous avons vu que le model checking ne présente pas uniquement que des avantages et certains inconvénients tel que le \textit{state explosion problem} s'avèrent être impactant au niveau des performances du model checking. Malgré que certaines recherches aient déjà eu lieu, le model checking ne reste cependant pas parfait et peut donc faire objet de recherches supplémentaires quant à l'amélioration de celui-ci. 
 
@@ -846,6 +832,45 @@ Un problème $A$ est dit PSPACE-complet si les deux conditions suivantes sont re
 \item le problème $A$ est dans la classe PSPACE, c'est-à-dire $A \in PSPACE$,
 \item tout problème PSPACE se réduit polynomialement à $A$, c'est-à-dire $\forall B \in PSPACE$ : $B \le_{p} A$. Si le problème $A$ vérifie cette condition, il est alors dit \textbf{PSPACE-dur}.
 \end{itemize}
+
+\newpage
+
+\section{Exécution des algorithmes par labelling du MC CTL sur le dépliage en arbre de la structure de Kripke} \label{sec:algo-arbres}
+
+\subsection{$EX\phi$}
+\noindent
+Etats accepteurs = $\{s_{1}, a_{1}\}$
+
+\begin{figure}
+  \centering
+   \includegraphics[scale=0.3]{figures/algo-EX.png}
+   \caption[Caption for LOF]{Exécution de l'algorithme 4 - $EX\phi$}
+   \label{fig:algo-EX}
+\end{figure} 
+
+
+\subsection{$E(\phi_{1} \cup \phi_{2})$}
+\noindent
+Etats accepteurs = $\{a_{0}, s_{1}, a_{1}, s_{2} '\}$ \\
+
+\begin{figure}
+  \centering
+   \includegraphics[scale=0.3]{figures/algo-EU.png}
+   \caption[Caption for LOF]{Exécution de l'algorithme 5 - $E(\phi_{1} \cup \phi_{2})$}
+   \label{fig:algo-EU}
+\end{figure}
+
+\subsection{$A(\phi_{1} \cup \phi_{2})$} 
+
+\noindent
+Etats accepteurs = $\{ \varnothing\}$ \\
+
+\begin{figure}
+  \centering
+   \includegraphics[scale=0.3]{figures/algo-AU.png}
+   \caption[Caption for LOF]{Exécution de l'algorithme 6 - $A(\phi_{1} \cup \phi_{2})$}
+   \label{fig:algo-AU}
+\end{figure} 
 
 \end{subappendices}
 
